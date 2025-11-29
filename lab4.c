@@ -3,66 +3,62 @@
 #include <time.h>
 void SP(int arr[], int n) {
     for (int i = 0; i < n-1; i++) {
-        for (int j = 0; j < n-i-1; j++) {
-            if (arr[j] > arr[j+1]) {
-                int temp = arr[j];
-                arr[j] = arr[j+1];
-                arr[j+1] = temp;
+        for (int x = 0; x < n-i-1; x++) {
+            if (arr[x] > arr[x+1]) {
+                int ass = arr[x];
+                arr[x] = arr[x+1];
+                arr[x+1] = ass;
             }
         }
     }
 }
-void SV(int arr[], int n) {
-    for (int i = 1; i < n; i++) {
-        int key = arr[i];
-        int j = i-1;
-        while (j >= 0 && arr[j] > key) {
-            arr[j+1] = arr[j];
-            j--;
-        }
-        arr[j+1] = key;
-    }
-}
 void SS(int arr[], int n) {
     if (n <= 1) return;
-    int mid = n / 2;
-    int left[mid];
-    int right[n - mid];
-    for (int i = 0; i < mid; i++) {
-        left[i] = arr[i];
+    int seredina = n / 2;
+    int levo[seredina];
+    int pravo[n - seredina];
+    for (int i = 0; i < seredina; i++) {
+        levo[i] = arr[i];
     }
-    for (int i = 0; i < n - mid; i++) {
-        right[i] = arr[mid + i];
+    for (int i = 0; i < n - seredina; i++) {
+        pravo[i] = arr[seredina + i];
     }
-    SS(left, mid);
-    SS(right, n - mid);
-    int i = 0, j = 0, k = 0;
-    while (i < mid && j < n - mid) {
-        if (left[i] <= right[j]) {
-            arr[k] = left[i];
+    SS(levo, seredina);
+    SS(pravo, n - seredina);
+    int i = 0, x = 0, k = 0;
+    while (i < seredina && x < n - seredina) {
+        if (levo[i] <= pravo[x]) {
+            arr[k] = levo[i];
             i++;
         } else {
-            arr[k] = right[j];
-            j++;
+            arr[k] = pravo[x];
+            x++;
         }
         k++;
     }
-    while (i < mid) {
-        arr[k] = left[i];
+    while (i < seredina) {
+        arr[k] = levo[i];
         i++;
         k++;
     }
-    while (j < n - mid) {
-        arr[k] = right[j];
-        j++;
+    while (x < n - seredina) {
+        arr[k] = pravo[x];
+        x++;
         k++;
     }
 }
-double TS(void (*sortFunc)(int[], int), int arr[], int n) {
-    int copy[n];
-    for (int i = 0; i < n; i++) {
-        copy[i] = arr[i];
+void SV(int arr[], int n) {
+    for (int i = 1; i < n; i++) {
+        int z = arr[i];
+        int x = i-1;
+        while (j >= 0 && arr[x] > z) {
+            arr[x+1] = arr[x];
+            x--;
+        }
+        arr[x+1] = z;
     }
+}
+double TS(void (*sortFunc)(int[], int), int arr[], int n) {
     clock_t start = clock();
     sortFunc(copy, n);
     clock_t end = clock();
@@ -73,15 +69,13 @@ int main() {
     int sizes[] = {10, 1000, 10000, 100000};
     int numSizes = 4;
     printf("comparison of sorts:\n");
-    printf("_________________________\n\n");
     for (int i = 0; i < numSizes; i++) {
         int n = sizes[i];
         int arr[n];
-        for (int j = 0; j < n; j++) {
-            arr[j] = rand() % 10000;
+        for (int x = 0; x < n; x++) {
+            arr[x] = rand() % 10000;
         }
         printf("Massiv`s size: %d\n", n);
-        printf("__________________\n");
         double time1 = TS(SP, arr, n);
         printf("Пузырьком:    %.6f сек\n", time1);
         double time2 = TS(SV, arr, n);
@@ -91,4 +85,5 @@ int main() {
         printf("\n");
     }
     return 0;
+
 }
