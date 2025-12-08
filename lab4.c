@@ -51,7 +51,7 @@ void SV(int arr[], int n) {
     for (int i = 1; i < n; i++) {
         int z = arr[i];
         int x = i-1;
-        while (j >= 0 && arr[x] > z) {
+        while (x >= 0 && arr[x] > z) {
             arr[x+1] = arr[x];
             x--;
         }
@@ -87,3 +87,4 @@ int main() {
     return 0;
 
 }
+
