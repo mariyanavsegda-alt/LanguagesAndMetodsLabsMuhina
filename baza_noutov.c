@@ -104,7 +104,7 @@ Laptop* find_by_price(Laptop* head, int max_price) {
     Laptop* current = head;
     Laptop* result = NULL;
     
-    printf("\nНоутбуки до %d руб.:\n", max_price);
+    printf("\nНоутбуки до %d коней:\n", max_price);
     int found = 0;
     
     while (current != NULL) {
@@ -179,7 +179,7 @@ void save_to_file(Laptop* head) {
 void load_from_file(Laptop** head) {
     FILE* file = fopen(FILE_NAME, "r");// открываем, но уже на чтение
     if (!file) {
-        printf("Файл не найден, делаем новый\n");
+       // printf("Файл не найден, делаем новый\n");
         return;
     }
     
@@ -248,3 +248,4 @@ Laptop input_laptop(Laptop* head) {
     return laptop;
 
 }
+
