@@ -104,7 +104,7 @@ Laptop* find_by_price(Laptop* head, int max_price) {
     Laptop* current = head;
     Laptop* result = NULL;
     
-    printf("\nНоутбуки до %d руб.:\n", max_price);
+    printf("\nНоутбуки до %d коней:\n", max_price);
     int found = 0;
     
     while (current != NULL) {
@@ -134,7 +134,7 @@ void show_laptop(Laptop* laptop) {
     printf("Бренд: %s\n", laptop->brand);    // получаем доступ к полям структуры через указатель
     printf("Модель: %s\n", laptop->model);
     printf("ОЗУ: %d ГБ\n", laptop->ram);
-    printf("Цена: %d руб.\n", laptop->price);
+    printf("Цена: %d коней\n", laptop->price);
     printf("--------------------\n");
 }
 
@@ -246,4 +246,5 @@ Laptop input_laptop(Laptop* head) {
     
     laptop.next = NULL;
     return laptop;
+
 }
