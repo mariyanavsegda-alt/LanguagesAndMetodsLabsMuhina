@@ -1,4 +1,4 @@
-CC = gcc 
+CC = gcc
 CFLAGS = -Wall -std=c99
 TARGET = laptop_store
 SOURCES = main.c baza_noutov.c
@@ -9,7 +9,7 @@ $(TARGET): $(SOURCES)
 	$(CC) $(CFLAGS) -o $(TARGET) $(SOURCES)
 
 clean:
-	rm -f $(TARGET) laptops.txt
+	rm -f $(TARGET)
 
 run: $(TARGET)
 	./$(TARGET)
