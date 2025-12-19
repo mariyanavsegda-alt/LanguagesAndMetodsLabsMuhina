@@ -154,8 +154,8 @@ void show_all(Laptop* head) {
 }
 
 // сохраняем в файл
-void save_to_file(Laptop* head) {
-    FILE* file = fopen(FILE_NAME, "w"); // открываем файл на запись
+void save_to_file(Laptop* head,const char* filename) {
+    FILE* file = fopen(filename, "w"); // открываем файл на запись
     if (!file) {
         printf("Ошибка\n");
         return;
@@ -176,8 +176,8 @@ void save_to_file(Laptop* head) {
 }
 
 // загружаем из файла
-void load_from_file(Laptop** head) {
-    FILE* file = fopen(FILE_NAME, "r");// открываем, но уже на чтение
+void load_from_file(Laptop** head,const char* filename) {
+    FILE* file = fopen(filename, "r");// открываем, но уже на чтение
     if (!file) {
         printf("Файл не найден, делаем новый\n");
         return;
@@ -248,3 +248,4 @@ Laptop input_laptop(Laptop* head) {
     return laptop;
 
 }
+
