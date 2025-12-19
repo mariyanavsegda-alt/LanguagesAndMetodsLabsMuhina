@@ -4,7 +4,7 @@
 #define BAZA_NOUTOV_H
 
 #define MAX_LEN 50
-#define FILE_NAME "laptops.txt"// текстовый файл, создается при старте программы
+
 
 // Структура ноутбука ( одного элемента )
 typedef struct Laptop {
@@ -29,9 +29,10 @@ void show_laptop(Laptop* laptop);
 void show_all(Laptop* head);
 
 // Работа с файлом
-void save_to_file(Laptop* head);
-void load_from_file(Laptop** head);
+void save_to_file(Laptop* head,const char* filename);
+void load_from_file(Laptop** head,const char* filename);
 int get_next_id(Laptop* head);
 Laptop input_laptop(Laptop* head);
+
 
 #endif
