@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "baza_noutov.h"
-
+#define DEFAULT_FILE "laptops.txt"
 //отдельная функция для меню действий
 //____________________________________________
 void show_menu() {
@@ -25,9 +25,11 @@ int main() {
     //делаем список
     Laptop* db = NULL; // указываем на начало списка
     int choice;        // переменная, где мы бкдем запоминать выбор
-    
+    char* filename = DEFAULT_FILE;
+    if (argc > 1) {
+        filename = argv[1];}
     init_db(&db);         // инициализируем базу данных
-    load_from_file(&db); // загружаем данные из файла 
+    load_from_file(&db,filename); // загружаем данные из файла 
  // главный цикл, показываем меню, и считываем выбор
     do {
         show_menu();
@@ -96,11 +98,11 @@ int main() {
                 break;
                 
             case 7: // Сохранить
-                save_to_file(db);
+                save_to_file(db,filename);
                 break;
                                             // ну тут все и так ясно
             case 8: // Выход
-                save_to_file(db);
+                save_to_file(db,filename);
                 printf("Данные сохранены, милорд. Выход.\n");
                 break;
                 
@@ -113,4 +115,5 @@ int main() {
     free_db(&db);//освобождаем всю выделенную память
     return 0;
 }
+
 //__________________________________________________________
