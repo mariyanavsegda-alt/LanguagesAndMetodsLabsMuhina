@@ -1,39 +1,35 @@
-//_______________________________________
-// объявляем все наши функции в этом файле
 #ifndef BAZA_NOUTOV_H
 #define BAZA_NOUTOV_H
 
 #include <string>
+#include <list>
+#include <optional>
 
-const int MAX_LEN = 50;
-const char FILE_NAME[] = "laptops.txt"; // текстовый файл, создается при старте программы
-
-// Структура ноутбука ( одного элемента )
 struct Laptop {
     int id;
     std::string brand;
-    std::string model; // содержит данные о ноуте и указатель на следующий элемент
+    std::string model;
     int ram;
     int price;
-    Laptop* next;
+};
+class LaptopDatabase {
+private:
+    std::list<Laptop> laptops;
+    std::string filename;
+    int get_next_id() const;
+public:
+    explicit LaptopDatabase(const std::string& file);
+    ~LaptopDatabase();
+    void add_laptop(const Laptop& laptop);
+    void remove_laptop(int id);
+    std::optional<std::reference_wrapper<const Laptop>> find_by_id(int id) const;
+    void find_by_brand(const std::string& brand) const;
+    void find_by_price(int max_price) const;
+    void update_laptop(int id, const Laptop& new_data);
+    void show_all() const;
+    void load_from_file();
+    void save_to_file() const;
 };
 
-// Основные функции
-void init_db(Laptop** head);
-void free_db(Laptop** head);
-void add_laptop(Laptop** head, Laptop new_laptop);
-void remove_laptop(Laptop** head, int id);
-Laptop* find_by_id(Laptop* head, int id);
-Laptop* find_by_brand(Laptop* head, const std::string& brand);
-Laptop* find_by_price(Laptop* head, int max_price);
-void update_laptop(Laptop* laptop, Laptop new_data);
-void show_laptop(Laptop* laptop);
-void show_all(Laptop* head);
-
-// Работа с файлом
-void save_to_file(Laptop* head);
-void load_from_file(Laptop** head);
-int get_next_id(Laptop* head);
-Laptop input_laptop(Laptop* head);
-
+Laptop input_laptop();
 #endif
